@@ -41,7 +41,7 @@
 		<ursim.home></ursim.home>
 
 		<!--Host and standard user/password for UR Sim running in a VM-->
-		<ursimvm.install.host></ursimvm.install.host>
+		<ursimvm.install.host>192.168.1.46</ursimvm.install.host>
 		<ursimvm.install.username>ur</ursimvm.install.username>
 		<ursimvm.install.password>easybot</ursimvm.install.password>
 	</properties>
