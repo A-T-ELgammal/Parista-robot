@@ -1,6 +1,8 @@
 package com.TulipTechnologies.parista_robot.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 import com.ur.urcap.api.contribution.ProgramNodeContribution;
 import com.ur.urcap.api.contribution.ProgramNodeService;
@@ -31,8 +33,17 @@ public class MqttClinetProgramNodeService implements ProgramNodeService {
 
     @Override
     public InputStream getHTML() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHTML'");
+       String htmlContent = "<html>" +
+                             "<head>" +
+                             "<title>Parista Robot!</title>" +
+                             "</head>" +
+                             "<body>" +
+                             "<h3>Connect MQTT server with robot </h3>" +
+                             "</body>" +
+                             "</html>";
+        InputStream htmlStream = new ByteArrayInputStream(htmlContent.getBytes(StandardCharsets.UTF_8));
+        return  htmlStream;
+
     }
     
     @Override
