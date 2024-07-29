@@ -77,7 +77,7 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         }
     }
     
-        private void subscribeToTopic(String topic)
+    private void subscribeToTopic(String topic)
     {
         while(client.isConnected())
         {
@@ -94,7 +94,15 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         }
     }
     
-
+    String excuteCommand(String payload)
+    {
+        if (payload == "1")
+        {
+            return "movej([0.5, -1.2, 1.8, -2.0, -1.5, 0.3] ,a = 1.2, v = 1.05)" + "sleep(1.0)";
+        }
+            return "movej([-0.3, -1.1, 1.5, -1.7, 1.0, 0.8] ,a = 1.2, v = 1.05)" + "sleep(1.0)";
+    }
+    
 
     @Override
     public void openView() {
