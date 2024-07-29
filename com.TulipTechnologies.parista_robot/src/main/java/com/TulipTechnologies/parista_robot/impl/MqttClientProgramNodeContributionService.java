@@ -77,7 +77,24 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         }
     }
     
+        private void subscribeToTopic(String topic)
+    {
+        while(client.isConnected())
+        {
+            try{
+            client.subscribe(topic, 0,(topic1, message) -> 
+            {
+            this.payload = message.getPayload().toString();                
+            });
+            
+            }catch(MqttException e)
+            {
+                String subscribtionStatus = "subscribe Failed";
+            }
+        }
+    }
     
+
 
     @Override
     public void openView() {
