@@ -89,6 +89,23 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         }
     }
     
+    public void closeConnectionThread()
+    {
+        if (mqttThread != null) 
+        {
+            mqttThread.interrupt();
+        }
+        if (client != null && client.isConnected()) {
+            try {
+                client.disconnect();
+                client.close();
+                warning += "Connection Closed!";
+            } catch (MqttException e) {
+                warning += "Disconnection Failed: ";
+            }
+        }
+    }
+    
     private void subscribeToTopic(String topic)
     {
         {
@@ -145,6 +162,7 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         String status = isConnected? "MQTT Connected" : "MQTT Not Connected";
         // String status = model.get("connectionStatus", "No connection attempt made");
         writer.appendLine("textmsg(\"" + status + "\")");
+        writer.appendLine("textmsg(\"" + warning + "\")");
         writer.appendLine(excuteCommand(this.payload));
         // writer.appendLine("movej([0.1, -0.5, 1.2, -1.0, 0.5, 0.3], a=1.2, v=0.25)\n");
         
@@ -186,5 +204,4 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         //         model.set("connectionStatus", "Connection Setup Failed: " + e.getMessage());
         //     }
         // }
-        
-        
+

@@ -20,7 +20,7 @@ public class Activator implements BundleActivator {
     public void stop(BundleContext context) throws Exception {
         if(mqttService != null)
         {
-            mqttService.closeConnection();
+            mqttService.closeConnectionThread();
         }
     }
 }
