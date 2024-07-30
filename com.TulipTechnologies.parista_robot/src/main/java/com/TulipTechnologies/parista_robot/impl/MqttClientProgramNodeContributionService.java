@@ -24,12 +24,16 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
     private boolean isConnected = false;
     private String payload;
     private String warning = "No warning yet!";
+    private Thread mqttThread;
+
     public MqttClientProgramNodeContributionService(URCapAPI api, DataModel model) {
         this.api = api;
         this.model = model;
     }
     private void initMqttClient() 
     {
+        mqttThread = new Thread(() ->
+        {
         try 
         {
             client = new MqttAsyncClient(URI, MqttAsyncClient.generateClientId());
@@ -51,9 +55,17 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
                     warning +="MQTT Connection Failed: " + exception.getMessage();
                 }
             });
-        } catch (MqttException e) {
+
+            //keep thread alive
+            while(!Thread.currentThread().isInterrupted())
+            {
+                Thread.sleep(1000);
+            }
+
+        } catch (MqttException | InterruptedException e) {
             warning += "MQTT Setup Failed: " + e.getMessage() + "\n";
         }
+        });
     }
     
     public void closeConnection() {
@@ -79,8 +91,8 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
     
     private void subscribeToTopic(String topic)
     {
-        while(client.isConnected())
         {
+            
             try{
             client.subscribe(topic, 0,(topic1, message) -> 
             {
@@ -91,6 +103,7 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
             {
                 String subscribtionStatus = "subscribe Failed";
             }
+            
         }
     }
     
@@ -137,6 +150,8 @@ public class MqttClientProgramNodeContributionService implements ProgramNodeCont
         
     }
 }
+
+
 
 
     // private void MqttConnect(){
