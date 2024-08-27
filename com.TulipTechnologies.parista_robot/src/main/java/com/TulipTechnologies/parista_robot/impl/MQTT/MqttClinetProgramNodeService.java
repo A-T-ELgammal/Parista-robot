@@ -48,7 +48,7 @@ public class MqttClinetProgramNodeService implements ProgramNodeService {
     
     @Override
     public ProgramNodeContribution createNode(URCapAPI api, DataModel model) {
-        return new MqttClientProgramNodeContributionService(api, model);    
+        return new socketProgramNodeContributionService();    
     }
     
 }
