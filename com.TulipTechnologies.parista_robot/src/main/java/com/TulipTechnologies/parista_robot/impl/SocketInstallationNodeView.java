@@ -1,4 +1,4 @@
-package com.TulipTechnologies.SampleMoveURCap.impl;
+package com.TulipTechnologies.parista_robot.impl;
 import javax.swing.JPanel;
 
 import com.ur.urcap.api.contribution.installation.swing.SwingInstallationNodeView;

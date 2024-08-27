@@ -1,4 +1,4 @@
-package com.TulipTechnologies.SampleMoveURCap.impl;
+package com.TulipTechnologies.parista_robot.impl;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
