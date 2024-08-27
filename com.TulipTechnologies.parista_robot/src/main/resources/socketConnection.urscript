@@ -1,0 +1,22 @@
+# thread socket_connection_thread():
+#     socket_conn = socket_open(socket_ip, socket_port)
+#     port_str = to_str(socket_port)
+#     textmsg("robot connected to device with IP: " + socket_ip + " and port: " + port_str)
+
+#     while (True):
+#         if (socket_conn):
+#             received_order = socket_read_string()
+#             textmsg(received_order)
+#         end
+#         sync()
+#     end
+# end
+
+# thread_handler = run socket_connection_thread()
+
+# global received_order
+
+# modbus_add_signal(socket_ip,255,3, "order_register",0,1,"INTEGER")
+# modbus_set_runstate_dependent_choice(False)
+# modbus_set_signal_update_frequency("order_register", 10)
+global order_value = "30"
