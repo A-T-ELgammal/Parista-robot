@@ -9,7 +9,7 @@ import com.ur.urcap.api.contribution.program.ProgramAPIProvider;
 import com.ur.urcap.api.contribution.program.swing.SwingProgramNodeService;
 import com.ur.urcap.api.domain.data.DataModel;
 
-public class ParistaProgramNodeService implements SwingProgramNodeService<SwingParistaProgramContributionNodeService, SwingParistaProgramNodeView>{
+public class SwingParistaProgramNodeService implements SwingProgramNodeService<SwingParistaProgramContributionNodeService, SwingParistaProgramNodeView>{
 
     @Override
     public String getId() {

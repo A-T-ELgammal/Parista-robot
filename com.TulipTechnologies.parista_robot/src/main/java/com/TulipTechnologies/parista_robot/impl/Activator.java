@@ -4,6 +4,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import com.ur.urcap.api.contribution.installation.swing.SwingInstallationNodeService;
+import com.ur.urcap.api.contribution.program.swing.SwingProgramNodeService;
 
 
 public class Activator implements BundleActivator {
@@ -13,6 +14,7 @@ public class Activator implements BundleActivator {
     public void start(BundleContext context) throws Exception {
         System.out.println("Activator of mqtt started!");
         context.registerService(SwingInstallationNodeService.class, new SocketInstallationProgramNodeService(), null);
+        context.registerService(SwingProgramNodeService.class, new SwingParistaProgramNodeService(),null);
         }
 
     @Override
